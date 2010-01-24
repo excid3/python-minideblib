@@ -1,0 +1,15 @@
+
+Example Usage:
+
+>>> repos = [ "deb http://repository.maemo.org/ bora free non-free extras", "deb-src http://repository.maemo.org/ bora free non-free extras" ]
+>>> from minideblib import AptRepoClient
+>>> r = AptRepoClient.AptRepoClient(repos, [ 'i386', 'armel'])
+>>> r.update()
+>>> r.get_available_source_versions("busybox")
+[(('http://repository.maemo.org/', 'bora', 'free'), '3:1.1.3-3.sdk3'), (('http://repository.maemo.org/', 'bora', 'free'), '3:1.1.3-3.osso17')]
+>>> r.get_source_name_version("busybox","3:1.1.3-3.sdk3")[0].get_urls()
+['http://repository.maemo.org/pool/maemo3.1/free/source/busybox_1.1.3-3.sdk3.dsc', 'http://repository.maemo.org/pool/maemo3.1/free/source/busybox_1.1.3.orig.tar.gz', 'http://repository.maemo.org/pool/maemo3.1/free/source/busybox_1.1.3-3.sdk3.diff.gz']
+>>> r.get_source_name_version("busybox","3:1.1.3-3.sdk3")[0]["build-depends"]
+'debhelper (>= 4.2.0), dpatch'
+>>>
+
